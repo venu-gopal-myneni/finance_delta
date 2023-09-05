@@ -1,0 +1,2 @@
+1) If getting SSL certificates error while scraping https websites. Follow this https://medium.com/illumination/urllib-error-urlerror-6329860028cf
+or pip install certifi
