@@ -11,8 +11,8 @@ from bs4.element import NavigableString
 
 class CentralBankRBI:
     page_url = "https://www.rbi.org.in/"
-    bank_rates = ['PolicyRepoRate', 'StandingDepositFacilityRate', 'MarginalStandingFacilityRate', 'BankRate',
-                  'FixedReverseRepoRate', ]
+    policy_rates = ['PolicyRepoRate', 'StandingDepositFacilityRate', 'MarginalStandingFacilityRate', 'BankRate',
+                    'FixedReverseRepoRate', ]
 
     def __init__(self):
         pass
@@ -44,13 +44,13 @@ class CentralBankRBI:
         logging.debug(tables_rows)
         return tables_rows
 
-    def get_rbi_rates(self, tables_rows: list[list]) -> list:
+    def get_policy_rates(self, tables_rows: list[list]) -> list:
         """
             Get different types of RBI rates
         """
         rates_list = []
         for name, rate in tables_rows:
-            if name in self.bank_rates:
+            if name in self.policy_rates:
                 logging.debug(rate)
                 rate = float(rate.replace('%', ""))
                 logging.debug(rate)
@@ -63,5 +63,5 @@ if __name__ == "__main__":
     bank = CentralBankRBI()
     tables_rows = bank.get_rbi_tables_rows()
     print(tables_rows)
-    rates_list = bank.get_rbi_rates(tables_rows)
+    rates_list = bank.get_policy_rates(tables_rows)
     print(rates_list)
